@@ -141,7 +141,7 @@ function configureLecturerAccessCode() {
 
 function verifyLecturerAccess(code) {
   const saved = PropertiesService.getScriptProperties().getProperty(STAT210_ACCESS_PROPERTY);
-  if (!saved) throw new Error('Lecturer access code is not configured. Run setupSTAT210().');
+  if (!saved) throw new Error('Lecturer access code is not configured. Run configureLecturerAccessCode() from the Apps Script editor first.');
   if (String(code || '') !== saved) throw new Error('Incorrect lecturer access code.');
   return {success:true};
 }
