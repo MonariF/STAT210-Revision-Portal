@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+secrets.*
+credentials.*
+token*
+private/
+data/
+exports/
+student-records/
+results/
+*.csv
