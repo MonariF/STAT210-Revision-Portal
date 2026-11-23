@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STAT 210 Revision Portal | Dr. Fred Monari</title>
+<style>
+:root{--navy:#12395b;--blue:#1769aa;--pale:#edf4fb;--ink:#172536;--muted:#607080;--line:#d9e2ec;--green:#18794e;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:var(--ink);font:15px/1.6 Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#102d4d,#1769aa);color:white;padding:28px 20px}
+.wrap{max-width:1180px;margin:auto}.eyebrow{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+h1{font-size:clamp(25px,4vw,36px);line-height:1.2;margin:7px 0}header p{margin:6px 0 0;color:#e7f1fb}
+main{max-width:1180px;margin:20px auto;padding:0 16px 50px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab{background:#e2eaf3;color:var(--navy)}.tab.active{background:var(--navy);color:white}
+.panel,.topic-card,.stat{background:white;border:1px solid var(--line);border-radius:13px;padding:20px;margin:14px 0;box-shadow:0 3px 12px #152d4610}
+h2{font-size:23px;color:var(--navy);margin:0 0 10px}h3{font-size:18px;color:var(--navy);margin:20px 0 7px}h4{margin:12px 0 5px;color:var(--navy)}
+label{display:block;font-weight:700;font-size:13px;margin:0 0 5px}
+input,select{width:100%;padding:11px;border:1px solid #bac9d8;border-radius:8px;font-size:15px;background:white;color:var(--ink)}
+input:focus,select:focus{outline:3px solid #d7eafa;border-color:var(--blue)}
+button{border:0;border-radius:8px;padding:10px 15px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:white}
+button:hover{filter:brightness(.95)}button:disabled{opacity:.45;cursor:not-allowed}button.secondary{background:#e8eef5;color:var(--navy)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.muted{color:var(--muted);font-size:13px}
+.note{background:var(--pale);border-left:4px solid var(--blue);padding:12px 14px;border-radius:7px;margin:12px 0}
+.warning{background:#fff6e5;border-left:4px solid #d99a17;padding:12px 14px;border-radius:7px;margin:12px 0}
+.success{background:#eaf7ef;border-left:4px solid var(--green);padding:12px 14px;border-radius:7px;margin:12px 0}
+.hidden{display:none!important}.week-nav,.topic-nav{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.week-nav button,.topic-nav button{background:#e7eef6;color:var(--navy)}.week-nav button.active,.topic-nav button.active{background:var(--navy);color:white}
+.topic-layout{display:grid;grid-template-columns:260px 1fr;gap:14px;align-items:start}
+.sidebar{position:sticky;top:10px;background:white;border:1px solid var(--line);border-radius:12px;padding:12px;max-height:75vh;overflow:auto}
+.topic-link{display:block;width:100%;text-align:left;background:transparent;color:var(--ink);font-weight:500;padding:8px;border-radius:6px;margin:2px 0}
+.topic-link.active{background:var(--pale);color:var(--navy);font-weight:700}
+.topic-content{min-width:0}.topic-card ul{padding-left:22px}.code{background:#101d2b;color:#e8f1fa;padding:12px;border-radius:8px;overflow:auto;white-space:pre-wrap;font:13px/1.5 Consolas,monospace}
+.question{border-top:1px solid var(--line);padding:13px 0}.question:first-child{border-top:0}.option{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);padding:8px 10px;border-radius:7px;margin:6px 0;font-weight:400;cursor:pointer}.option input{width:auto;margin-top:4px}
+.feedback{display:none;padding:8px 10px;border-radius:6px;margin-top:7px;font-size:13px}.feedback.correct{display:block;background:#eaf7ef;color:#145c3b}.feedback.incorrect{display:block;background:#fff0ef;color:#8f1d16}
+.progress{height:9px;background:#e6edf4;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;background:#21865b}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat strong{font-size:25px;color:var(--navy);display:block}.stat{margin:0;padding:13px}
+.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid var(--line);padding:8px;text-align:left;white-space:nowrap}th{background:#edf3f9}
+footer{text-align:center;color:var(--muted);padding:22px}
+@media(max-width:760px){.topic-layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.grid2,.grid3{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}header{padding:23px 16px}}
+</style></head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">STAT 210 · Statistical Software and Data Analysis</div>
+<h1>STAT 210: Topic-by-Topic Revision Portal</h1>
+<p>R and SPSS practical skills, statistical concepts, data analysis, visualization, reporting and machine learning · Lecturer: Dr. Fred Monari</p>
+</div></header>
+<main>
+<div class="tabs">
+<button class="tab active" id="studentTab" onclick="showView('student')">Student learning</button>
+<button class="tab" id="lecturerTab" onclick="showView('lecturer')">Lecturer monitoring</button>
+</div>
+
+<section id="registration" class="panel">
+<h2>Student login and registration</h2>
+<p>Enter your details to access the revision lessons and topic assessments. Your details and every submitted attempt will be saved to the course records.</p>
+<div class="grid2">
+<div><label for="studentName">Student full name *</label><input id="studentName" autocomplete="name" placeholder="Enter full name"></div>
+<div><label for="regNo">Registration number *</label><input id="regNo" placeholder="Enter registration number"></div>
+<div><label for="studentEmail">Email address *</label><input id="studentEmail" type="email" autocomplete="email" placeholder="name@example.com"></div>
+<div><label for="courseCode">Course code *</label><input id="courseCode" value="STAT 210"></div>
+<div><label for="programme">Programme / class (optional)</label><input id="programme" placeholder="Programme or class"></div>
+</div>
+<div class="actions"><button id="startBtn" onclick="startStudent()">Save details and enter revision</button></div>
+<p class="muted">Full name, registration number, valid email address and course code are required. You may repeat topic assessments.</p>
+<div id="loginMessage" aria-live="polite"></div>
+</section>
+
+<section id="learning" class="hidden">
+<div class="panel"><div class="muted" id="welcome"></div><h2>Revision course map</h2>
+<p>Select a week and then a topic. Study the notes and worked examples before attempting the topic quiz. Each topic assessment is recorded separately, including repeat attempts.</p>
+<div class="warning"><b>Coverage note:</b> The supplied PDF contains Weeks 1, 2, 3, 4, 6, 7, 8 and 9. Week 5 is not present in the supplied notes, so no Week 5 material has been invented. Week 9 is included because it appears in the attached PDF.</div>
+<div id="weekNav" class="week-nav"></div>
+<div class="topic-layout">
+<aside class="sidebar"><b id="weekHeading">Topics</b><div id="topicNav"></div></aside>
+<div class="topic-content" id="topicContent"></div>
+</div></div>
+</section>
+
+<section id="lecturer" class="hidden">
+<div class="panel" id="lecturerLogin">
+<h2>Lecturer monitoring dashboard</h2>
+<p>Enter the lecturer access code to view student registrations, topic attempts and performance.</p>
+<div class="grid2"><div><label for="lecturerCode">Lecturer access code</label><input id="lecturerCode" type="password" placeholder="Enter access code"></div></div>
+<div class="actions"><button onclick="loadDashboard()">Open lecturer dashboard</button></div>
+<div id="lecturerMessage" class="muted"></div>
+<p class="muted">The access code must contain at least 4 characters. Keep it private.</p>
+</div>
+<div id="dashboard" class="hidden">
+<div class="actions"><button onclick="refreshDashboard()">Refresh data</button><button class="secondary" onclick="downloadCSV()">Download assessment CSV</button><button class="secondary" onclick="showChangeCode()">Change access code</button><a id="sheetLink" target="_blank" rel="noopener"><button class="secondary">Open Google Sheet</button></a></div>
+<div id="changeCodePanel" class="panel hidden"><h3>Change lecturer access code</h3><div class="grid2"><div><label>Current code</label><input id="oldCode" type="password"></div><div><label>New code (4+ characters)</label><input id="newCode" type="password" minlength="4"></div></div><button onclick="changeCode()">Update access code</button><div id="codeMessage"></div></div>
+<div class="stats" id="statCards"></div>
+<div class="panel"><h3>Student performance</h3><input id="studentSearch" placeholder="Search name, registration number or email" oninput="renderDashboardTables()"><div class="table-wrap" id="studentTable"></div></div>
+<div class="panel"><h3>Topic performance summary</h3><div class="table-wrap" id="topicTable"></div></div>
+<div class="panel"><h3>Assessment attempt history</h3><div class="grid2"><div><label>Filter by week</label><select id="weekFilter" onchange="renderDashboardTables()"><option value="">All weeks</option></select></div><div><label>Filter by topic or student</label><input id="attemptSearch" placeholder="Search..." oninput="renderDashboardTables()"></div></div><div class="table-wrap" id="attemptTable"></div></div>
+</div>
+</section>
+</main>
+<footer>STAT 210 Revision Portal · Dr. Fred Monari</footer>
+
+<script>
+const course = [
+{week:"Week 1: Introduction to R and SPSS",topics:[
+{title:"1.1 Course purpose and statistical software",summary:"The course develops practical skills for working with data: importing and cleaning data, statistical analysis, graphs and charts, and reporting findings. The notes introduce R as a programming language and statistical environment, and SPSS as point-and-click statistical software.",points:["R is a programming language and software environment used for statistics and graphs.","RStudio makes R easier to use and provides a console, code editor, plots and files areas.","SPSS uses a menu-driven interface; the notes state that it is licensed rather than free.","R is installed from CRAN; RStudio is available from Posit.","SPSS is commonly installed using an institutional or organisational licence."],code:"R: https://cran.r-project.org/\\nRStudio: https://posit.co/download/rstudio-desktop/",questions:[
+{q:"Which statement best describes R?",o:["A spreadsheet only","A programming language and statistical environment","A word processor","A database server"],a:1,e:"The notes define R as a programming language and software environment for statistics and graphs."},
+{q:"What is the main role of RStudio?",o:["Replace R entirely","Make R easier to use through an integrated interface","Store SPSS licences","Create only presentations"],a:1,e:"RStudio provides a console, code-writing area and areas for plots and files."},
+{q:"Which software is described as point-and-click and menu-driven?",o:["R","RStudio","SPSS","CRAN"],a:2,e:"SPSS is the menu-driven statistical software described in the notes."}]},
+{title:"1.2 Basic syntax, data types and data structures",summary:"R can be used as a calculator. The notes cover numeric, string and logical data, plus variables, vectors and data frames. SPSS organises data in a dataset with rows as cases and columns as variables.",points:["Assignment in R uses <-, for example x <- 5.","Numeric values include 5, 3.14 and -2; strings are text; logical values are TRUE or FALSE.","A variable stores a single value; a vector stores values of the same type; a data frame is a table whose columns may have different types.","In SPSS, Data View displays cases and values; Variable View describes variables, types and labels.","In SPSS, Transform → Compute Variable creates a new variable from an expression."],code:"5 + 3\\n10 - 4\\n7 * 6\\n15 / 3\\n2 ^ 3\\n\\nx <- 5\\nages <- c(25, 30, 22)\\ndf <- data.frame(name=c(\"Alice\",\"Bob\"), age=c(25,30))\\n\\nnumbers <- c(10,20,30,40)\\nsum(numbers); mean(numbers); length(numbers); class(numbers)",questions:[
+{q:"Which symbol is used to assign a value in R in these notes?",o:["=","<-",":=","=="],a:1,e:"The notes use the two-character assignment operator <-."},
+{q:"Which R structure stores a list of values of the same type?",o:["Data frame","Vector","Function","Case"],a:1,e:"A vector stores a list of values of the same type."},
+{q:"In SPSS, where do you define variable information such as labels and types?",o:["Data View","Output Viewer","Variable View","Syntax window only"],a:2,e:"Variable View contains information about variables."},
+{q:"What does mean(numbers) return in R for c(10,20,30,40)?",numeric:true,a:25,e:"The mean is (10+20+30+40)/4 = 25.00."}]}
+]},
+{week:"Week 2: Data Import and Management",topics:[
+{title:"2.1 Importing CSV, Excel and SPSS files",summary:"Data must be loaded before analysis. CSV files store rows of data with comma-separated columns. The notes also show how to import Excel and SPSS files into R and SPSS.",points:["In R, set the working directory with setwd() and import CSV using read.csv().","For Excel in R, load readxl and use read_excel().","For SPSS .sav files in R, load haven and use read_sav().","In SPSS, use File → Open → Data and select the relevant file type.","During CSV import in SPSS, specify whether the first row contains variable names."],code:"setwd(\"C:/Users/YourName/Documents/Data\")\\nmy_data <- read.csv(\"survey_data.csv\")\\n\\nlibrary(readxl)\\nmy_data <- read_excel(\"data.xlsx\")\\n\\nlibrary(haven)\\nmy_data <- read_sav(\"data.sav\")",questions:[
+{q:"Which R function imports a CSV file?",o:["read.csv()","read_sav()","read_excel()","open.csv()"],a:0,e:"The notes use read.csv() for CSV files."},
+{q:"Which R package is used in the notes to read Excel files?",o:["haven","readxl","ggplot2","knitr"],a:1,e:"The notes show library(readxl) and read_excel()."},
+{q:"Which package and function are shown for importing an SPSS .sav file into R?",o:["readxl and read_excel()","haven and read_sav()","ggplot2 and read_sav()","stats and import_sav()"],a:1,e:"The notes show library(haven) and read_sav()."}]},
+{title:"2.2 Exploring data and identifying missing values",summary:"Explore a dataset before analysis. R functions shown include head(), tail(), str(), summary() and names(). Missing values appear as NA in R and blank cells or a dot in SPSS.",points:["head(my_data) shows the first six rows; tail() shows the last rows.","str() displays data structure and variable types; summary() gives summary statistics.","names() returns column names.","is.na() identifies missing values; sum(is.na(my_data$age)) counts missing values in age.","SPSS Frequencies can be used to inspect missing values; Variable View can define missing-value codes."],code:"head(my_data)\\ntail(my_data)\\nstr(my_data)\\nsummary(my_data)\\nnames(my_data)\\n\\nis.na(my_data)\\nsum(is.na(my_data$age))",questions:[
+{q:"Which R function displays the first six rows by default?",o:["tail()","head()","str()","names()"],a:1,e:"head(my_data) displays the first six rows."},
+{q:"How are missing values represented in R?",o:["NULL only","NA","-1 always","Blank text only"],a:1,e:"The notes state that missing data is shown as NA in R."},
+{q:"Which expression counts missing values in the age column?",o:["count(age)","sum(is.na(my_data$age))","length(age)","missing(age)"],a:1,e:"is.na() identifies missing values and sum() counts the TRUE values."}]},
+{title:"2.3 Cleaning, filtering and creating variables",summary:"The notes cover removing duplicate rows, handling missing data by removing rows or filling values, selecting subsets, and creating new variables such as age categories and BMI.",points:["Remove rows with missing data in R using na.omit().","Mean imputation example: replace missing age values with mean(age, na.rm=TRUE).","Remove duplicate rows using unique(my_data); SPSS provides Data → Identify Duplicate Cases.","Filter observations in R with subset(my_data, age > 18); SPSS uses Data → Select Cases.","Create categories with ifelse(); BMI is weight_kg divided by height_m squared.","In SPSS, Transform → Compute Variable creates a new variable; RECODE or IF conditions can create categories."],code:"my_data_clean <- na.omit(my_data)\\nmy_data$age[is.na(my_data$age)] <- mean(my_data$age, na.rm=TRUE)\\nmy_data <- unique(my_data)\\nadults <- subset(my_data, age > 18)\\nmy_data$age_category <- ifelse(my_data$age >= 18, \"Adult\", \"Minor\")\\nmy_data$bmi <- my_data$weight_kg / (my_data$height_m ^ 2)",questions:[
+{q:"Which R function removes duplicate rows from a data frame?",o:["unique()","na.omit()","subset()","summary()"],a:0,e:"The notes use unique(my_data) to remove duplicate rows."},
+{q:"Which function is used in the notes to select observations with age greater than 18?",o:["filter.csv()","subset()","unique()","read.csv()"],a:1,e:"subset(my_data, age > 18) selects the adult observations."},
+{q:"What formula is used to calculate BMI in the notes?",o:["weight × height","weight / height","weight_kg / height_m²","height / weight²"],a:2,e:"BMI is calculated as weight_kg divided by height_m squared."}]}
+]},
+{week:"Week 3: Data Exploration and Visualization",topics:[
+{title:"3.1 Descriptive statistics and central tendency",summary:"Descriptive statistics summarize the main features of a dataset. Measures of central tendency describe its centre: mean, median and mode.",points:["Mean is the sum of values divided by the number of values; it is useful for symmetric data without extreme outliers.","Median is the middle value after sorting; with an even number of observations, average the two middle values.","Mode is the most frequent value; a dataset may have no mode, one mode or multiple modes.","The salary example in the notes shows the mean pulled upward by a 100,000 outlier, while median and mode are 32,000.","R functions shown: mean(), median(), table() and summary()."],code:"scores <- c(70,80,90,85,75,95,65,70,80,85)\\nmean(scores)\\nmedian(scores)\\ntable(scores)\\nsummary(scores)",questions:[
+{q:"Which measure is generally less affected by an extreme outlier?",o:["Mean","Median","Sum","Range"],a:1,e:"The notes recommend the median for skewed data or data with outliers."},
+{q:"What is the mean of 2, 4, 6 and 8?",numeric:true,a:5,e:"Mean = (2+4+6+8)/4 = 5.00."},
+{q:"Which R command can help identify the mode by displaying frequencies?",o:["table(scores)","range(scores)","sd(scores)","IQR(scores)"],a:0,e:"The notes use table(scores) to show frequencies; the most frequent value is the mode."}]},
+{title:"3.2 Measures of dispersion",summary:"Measures of dispersion describe how spread out observations are. The notes cover range, variance, standard deviation and interquartile range.",points:["Range = maximum − minimum; it uses only two values and is sensitive to outliers.","Variance is the average squared difference from the mean; it is expressed in squared units.","Standard deviation is the square root of variance and describes spread in the original units.","A small standard deviation indicates values close to the mean; a large one indicates more spread.","IQR = Q3 − Q1 and describes the middle 50% of observations; it is less sensitive to outliers.","R functions: range(), min(), max(), var(), sd() and IQR()."],code:"range(scores)\\nmin(scores)\\nmax(scores)\\nvar(scores)\\nsd(scores)\\nIQR(scores)",questions:[
+{q:"How is the range calculated?",o:["Mean − median","Maximum − minimum","Q3 − Q1","Square root of variance"],a:1,e:"Range is the maximum value minus the minimum value."},
+{q:"Which measure describes the spread of the middle 50%?",o:["Range","Variance","Interquartile range","Mean"],a:2,e:"IQR = Q3 − Q1 and covers the middle 50%."},
+{q:"If variance is 25, what is the standard deviation?",numeric:true,a:5,e:"Standard deviation is the square root of variance: √25 = 5.00."}]},
+{title:"3.3 Choosing and creating basic graphs",summary:"Visualization helps identify patterns, trends, outliers and distributions and communicates findings. The notes match graph types to data types and purposes.",points:["Bar chart: compare categories; pie chart: show parts of a whole.","Histogram: show the distribution of one numerical variable; boxplot: show distribution and outliers.","Scatter plot: show the relationship between two numerical variables.","Line chart: show trends over time.","In R, use barplot(), pie(), hist(), boxplot() and plot(); add a regression line with abline(lm(y ~ x)).","In SPSS, use Graphs → Chart Builder or Graphs → Legacy Dialogs."],code:"barplot(students, names.arg=courses)\\npie(expenses, labels=labels)\\nhist(test_scores, breaks=5)\\nboxplot(salaries)\\nplot(study_hours, exam_scores)\\nabline(lm(exam_scores ~ study_hours))",questions:[
+{q:"Which graph is most suitable for the distribution of a single numerical variable?",o:["Pie chart","Histogram","Bar chart","Map"],a:1,e:"A histogram displays the distribution of numerical data."},
+{q:"Which graph is used to show the relationship between two numerical variables?",o:["Scatter plot","Pie chart","Bar chart","Infographic"],a:0,e:"Each point on a scatter plot represents a paired observation."},
+{q:"Which chart is appropriate for showing a trend over time?",o:["Pie chart","Boxplot","Line chart","Histogram"],a:2,e:"Line charts show trends over time."}]}
+]},
+{week:"Week 4: Statistical Concepts",topics:[
+{title:"4.1 Statistics, population, sample, parameter and statistic",summary:"Statistics is the science of collecting, organizing, analyzing, interpreting and presenting data. Descriptive statistics summarize data; inferential statistics make inferences about a population using a sample.",points:["Population: the entire group of interest.","Sample: a subset of the population that is studied.","Parameter: a numerical characteristic of a population, usually unknown.","Statistic: a numerical characteristic calculated from a sample and used to estimate a parameter.","Variable: a characteristic that can take different values, such as age, income or opinion."],questions:[
+{q:"What is a sample?",o:["The entire group of interest","A subset of the population that is studied","A population parameter","A data graph"],a:1,e:"A sample is a subset of the population that is actually studied."},
+{q:"A numerical characteristic of a population is called a:",o:["Statistic","Variable","Parameter","Case"],a:2,e:"A parameter describes a population."},
+{q:"Which branch makes inferences about a population from a sample?",o:["Descriptive statistics","Inferential statistics","Data entry","Visualization"],a:1,e:"Inferential statistics uses sample data to make inferences about a population."}]},
+{title:"4.2 Basic probability rules",summary:"Probability measures how likely an event is and ranges from 0 to 1. The notes cover event probability, total probability, complement, addition for mutually exclusive events and multiplication for independent events.",points:["P(E) = favourable outcomes / total possible outcomes.","0 ≤ P(E) ≤ 1; probabilities of all possible outcomes sum to 1.","Complement rule: P(not A) = 1 − P(A).","For mutually exclusive events: P(A or B) = P(A) + P(B).","For independent events: P(A and B) = P(A) × P(B)."],code:"P(6) = 1/6\\nP(no rain) = 1 - P(rain)\\nP(1 or 2) = 1/6 + 1/6\\nP(heads and a 6) = 1/2 * 1/6",questions:[
+{q:"If P(A)=0.35, what is P(not A)?",numeric:true,a:0.65,e:"Complement = 1 − 0.35 = 0.65."},
+{q:"For independent events, the multiplication rule is:",o:["P(A)+P(B)","P(A)×P(B)","P(A)−P(B)","P(A)/P(B)"],a:1,e:"For independent events P(A and B) = P(A) × P(B)."},
+{q:"What is the probability of rolling a 6 on a fair die?",numeric:true,a:0.1667,tolerance:0.002,e:"There is one favourable outcome out of six: 1/6 ≈ 0.1667."}]},
+{title:"4.3 Probability distributions and normal distribution",summary:"A probability distribution describes probabilities over values of a random variable. Discrete variables take countable values; continuous variables can take any value in an interval. The notes introduce binomial and normal distributions.",points:["A random variable has values determined by chance.","Binomial distribution: discrete; exactly two outcomes such as success/failure.","Normal distribution: continuous, symmetric and bell-shaped.","For a normal distribution, mean = median = mode.","Empirical rule: about 68% within 1 SD, 95% within 2 SDs and 99.7% within 3 SDs of the mean."],code:"dbinom(5, size=10, prob=0.5)\\npbinom(5, size=10, prob=0.5)\\nnormal_data <- rnorm(100, mean=70, sd=10)\\npnorm(80, mean=70, sd=10)",questions:[
+{q:"A binomial distribution is used in the notes for situations with:",o:["Exactly two outcomes","Any number of continuous outcomes","Only normally distributed values","No random outcomes"],a:0,e:"The binomial distribution is used for success/failure outcomes."},
+{q:"Approximately what percentage lies within two standard deviations in a normal distribution?",numeric:true,a:95,e:"The empirical rule gives approximately 95% within two standard deviations."},
+{q:"In a normal distribution, which equality holds?",o:["Mean = range = variance","Mean = median = mode","Mean = SD = mode","Median = IQR = mean"],a:1,e:"A normal distribution is symmetric and has mean, median and mode equal."}]},
+{title:"4.4 Sampling methods and sampling distributions",summary:"Sampling selects a subset of a population, often because studying the entire population is too expensive, time-consuming or impossible. The notes describe five sampling methods and the Central Limit Theorem.",points:["Simple random: every individual has an equal chance of selection.","Systematic: select every k-th individual.","Stratified: divide into strata and sample from each group.","Cluster: randomly select entire clusters.","Convenience: select easily accessible individuals; it is quick but may be biased.","A sampling distribution is the distribution of a statistic across many samples.","The notes state that for sufficiently large samples (usually n ≥ 30), the sampling distribution of the sample mean is approximately normal."],questions:[
+{q:"Which method divides a population into groups and samples from each group?",o:["Cluster","Convenience","Stratified","Systematic"],a:2,e:"Stratified sampling samples from each defined stratum."},
+{q:"Selecting every 10th person is an example of:",o:["Systematic sampling","Cluster sampling","Convenience sampling","Simple random sampling"],a:0,e:"Systematic sampling selects every k-th individual."},
+{q:"According to the notes, the usual large-sample guideline for the CLT is:",numeric:true,a:30,e:"The notes give n ≥ 30 as a usual guideline."}]}
+]},
+{week:"Week 6: Data Analysis with R and SPSS",topics:[
+{title:"6.1 Statistical testing and hypothesis testing concepts",summary:"A statistical test makes decisions about a population using sample data. The notes define the null and alternative hypotheses, p-value and significance level.",points:["Null hypothesis (H0): default assumption of no effect, difference or relationship.","Alternative hypothesis (H1): the claim being tested.","p-value: probability of observing the results, or more extreme results, if H0 is true.","Significance level α is commonly 0.05.","If p-value ≤ α, reject H0; if p-value > α, fail to reject H0."],questions:[
+{q:"The null hypothesis commonly represents:",o:["A proven effect","No effect or no difference","A guaranteed relationship","A sample mean"],a:1,e:"The null hypothesis is the default assumption of no effect, difference or relationship."},
+{q:"If p = 0.03 and α = 0.05, what is the decision?",o:["Fail to reject H0","Reject H0","Increase alpha","No conclusion is possible"],a:1,e:"Since 0.03 ≤ 0.05, reject the null hypothesis."},
+{q:"What does a p-value describe?",o:["Probability H0 is true","Probability of the observed or more extreme result assuming H0 is true","The sample size","The effect size"],a:1,e:"This is the definition given in the notes."}]},
+{title:"6.2 Correlation analysis and interpretation",summary:"Correlation measures the strength and direction of the relationship between two numerical variables. The coefficient ranges from −1 to +1. Correlation does not imply causation.",points:["r = +1: perfect positive correlation; r = 0: no linear correlation; r = −1: perfect negative correlation.","The notes' strength guide uses absolute magnitude: 0.00–0.19 very weak; 0.20–0.39 weak; 0.40–0.59 moderate; 0.60–0.79 strong; 0.80–1.00 very strong.","A negative coefficient indicates an inverse relationship; a positive coefficient indicates variables tend to increase together.","A third variable may explain an observed association; the notes illustrate this with ice cream sales and drowning incidents both related to hot weather.","Correlation does not establish causation."],questions:[
+{q:"What does r = −0.85 indicate using the notes' strength guide?",o:["Very strong negative association","Weak positive association","No association","Moderate positive association"],a:0,e:"The magnitude 0.85 is very strong; the negative sign indicates an inverse direction."},
+{q:"Which statement is correct?",o:["Correlation proves causation","Correlation measures strength and direction of association","r can exceed 1","Correlation is always positive"],a:1,e:"Correlation measures association and does not by itself prove causation."},
+{q:"A correlation of 0.70 is classified in the notes as:",o:["Weak","Moderate","Strong","Very weak"],a:2,e:"0.60–0.79 is classified as strong."}]},
+{title:"6.3 Simple linear regression and model interpretation",summary:"Simple linear regression predicts a dependent variable from one independent variable. The notes use y = a + bx, explain intercept and slope, and interpret R-squared and the slope p-value.",points:["y is the dependent variable to predict; x is the independent variable used for prediction.","a is the intercept, the value of y when x = 0; b is the slope, the change in y for a one-unit increase in x.","R² measures the proportion of variation in y explained by x; R² = 0.80 means 80%.","A p-value below 0.05 for the slope is treated as statistically significant in the notes.","Avoid extrapolating beyond the observed data range."],code:"model <- lm(exam_scores ~ study_hours, data=data)\\nsummary(model)\\npredict(model, data.frame(study_hours=6.5))\\nplot(data$study_hours, data$exam_scores)\\nabline(model)",questions:[
+{q:"In y = a + bx, what does b represent?",o:["Intercept","Slope","Sample size","p-value"],a:1,e:"The slope is the predicted change in y for a one-unit increase in x."},
+{q:"If R² = 0.80, what proportion of variation is explained by the model?",numeric:true,a:80,e:"R² = 0.80 represents 80% of the variation."},
+{q:"For y = 25 + 3.5x, what is predicted y when x = 10?",numeric:true,a:60,e:"y = 25 + 3.5(10) = 60.00."}]},
+{title:"6.4 Correlation and regression in R and SPSS",summary:"The notes demonstrate Pearson correlation, a correlation significance test, linear regression, predictions and a regression-line plot in R. SPSS uses Bivariate Correlation and Linear Regression dialogs.",points:["R correlation: cor(x, y); significance test: cor.test(x, y).","R regression: lm(y ~ x, data=data); inspect results with summary(model).","Use predict() to obtain predictions for new x values; plot() and abline() display data and fitted line.","SPSS correlation: Analyze → Correlate → Bivariate; select Pearson and optionally flag significant correlations.","SPSS regression: Analyze → Regression → Linear; place y in Dependent and x in Independent(s).","SPSS output includes model summary, ANOVA and coefficients tables."],code:"correlation <- cor(data$study_hours, data$exam_scores)\\ncor_test <- cor.test(data$study_hours, data$exam_scores)\\nmodel <- lm(exam_scores ~ study_hours, data=data)\\nsummary(model)",questions:[
+{q:"Which R function fits a simple linear regression model?",o:["cor.test()","lm()","hist()","table()"],a:1,e:"lm() fits a linear model."},
+{q:"Which SPSS menu path is used for bivariate correlation?",o:["Analyze → Regression → Linear","Analyze → Correlate → Bivariate","Graphs → Chart Builder","Transform → Compute Variable"],a:1,e:"The notes specify Analyze → Correlate → Bivariate."},
+{q:"In the SPSS Linear Regression dialog, the predicted variable belongs in:",o:["Independent(s)","Dependent","Grouping Variable","Variable View"],a:1,e:"The dependent variable is the response being predicted."}]},
+{title:"6.5 One-sample, independent and paired t-tests",summary:"The notes introduce three t-tests in R and SPSS: one-sample compares a sample mean with a known value; independent samples compares two independent groups; paired compares repeated measurements on the same subjects.",points:["One-sample R example: t.test(weights, mu=50).","Independent samples R example: t.test(new_method, traditional).","Paired R example: t.test(before, after, paired=TRUE).","SPSS one-sample: Analyze → Compare Means → One-Sample T Test.","SPSS independent: Analyze → Compare Means → Independent-Samples T Test; define group codes.","SPSS paired: Analyze → Compare Means → Paired-Samples T Test."],code:"t.test(weights, mu=50)\\nt.test(new_method, traditional)\\nt.test(before, after, paired=TRUE)",questions:[
+{q:"Which test compares a sample mean with a specified value?",o:["Paired t-test","One-sample t-test","Independent t-test","Correlation test"],a:1,e:"The one-sample t-test compares the sample mean with a known or hypothesised value."},
+{q:"Which test is appropriate for before-and-after measurements on the same people?",o:["Independent samples t-test","Paired t-test","One-sample t-test","Chi-square test"],a:1,e:"The paired t-test is for the same subjects measured twice."},
+{q:"Which R argument specifies a paired t-test?",o:["paired=TRUE","mu=TRUE","independent=TRUE","two.sided=TRUE"],a:0,e:"The notes show t.test(before, after, paired=TRUE)."}]},
+{title:"6.6 Output interpretation, assumptions and common mistakes",summary:"The notes describe correlation, p-value, R-squared, intercept, slope, t-statistic and confidence interval. They also warn against confusing correlation with causation, extrapolating, ignoring outliers, choosing the wrong correlation and failing to check assumptions.",points:["Correlation r: strength and direction, from −1 to +1.","p-value: compare with 0.05 in the notes to assess statistical significance.","R²: proportion of response variation explained by the model.","Intercept: expected y when x = 0; slope: change in y for one-unit increase in x.","Regression assumptions listed: linearity, normality, homoscedasticity and independence.","Inspect outliers and avoid predictions outside the data range."],questions:[
+{q:"Which is NOT one of the regression assumptions listed in the notes?",o:["Linearity","Normality","Homoscedasticity","Alphabetical ordering"],a:3,e:"The notes list linearity, normality, homoscedasticity and independence."},
+{q:"What does the slope represent?",o:["Change in y for a one-unit increase in x","Value of x when y is zero","Percentage of missing data","Sample size"],a:0,e:"The slope is the change in y for a one-unit increase in x."},
+{q:"Which is a common mistake identified in the notes?",o:["Checking outliers","Avoiding extrapolation","Assuming correlation proves causation","Checking assumptions"],a:2,e:"The notes explicitly warn against confusing correlation with causation."}]}
+]},
+{week:"Week 7: Advanced Data Visualization",topics:[
+{title:"7.1 Advanced visualization concepts and ggplot2",summary:"Advanced visualization extends basic plots through customization, multi-panel displays, more complex data structures and interactive or 3D graphics. ggplot2 is based on the Grammar of Graphics.",points:["Install ggplot2 once with install.packages('ggplot2') and load it with library(ggplot2).","Basic structure: ggplot(data, aes(x, y)) + geom_type() + additional layers.","ggplot() creates the base plot; aes() maps variables to visual properties; geom_*() adds points, bars, lines or other marks.","Additional layers can add labels, themes, legends and fitted trends.","The notes demonstrate customized scatter plots using category colour and a size variable."],code:"install.packages(\"ggplot2\")\\nlibrary(ggplot2)\\nggplot(data, aes(x=x, y=y, color=category, size=size)) +\\n  geom_point(alpha=0.7) +\\n  labs(title=\"Scatter Plot\", x=\"X Variable\", y=\"Y Variable\") +\\n  theme_minimal() +\\n  geom_smooth(method=\"lm\", se=FALSE)",questions:[
+{q:"What is ggplot2 based on?",o:["Grammar of Graphics","Database Normalization","Bayes theorem","SPSS syntax"],a:0,e:"The notes state that ggplot2 is based on the Grammar of Graphics."},
+{q:"In ggplot2, what does aes() define?",o:["File paths","Aesthetic mappings such as x, y and colour","Model coefficients","Missing values"],a:1,e:"aes() maps variables to visual properties."},
+{q:"Which function adds point marks to a ggplot?",o:["geom_point()","geom_hist()","abline()","read.csv()"],a:0,e:"geom_point() adds points to the plot."}]},
+{title:"7.2 Histograms, density curves and multi-panel plots",summary:"The notes show advanced histograms with density curves and faceting to create multiple plots based on a categorical variable.",points:["A histogram can map density to the y-axis and use bins to control intervals.","A density curve can be added with geom_density().","Faceting creates multiple small plots based on categories, such as separate panels for regions.","Multi-panel displays help compare patterns across groups.","Use clear titles, axis labels and legends."],code:"ggplot(data.frame(x=hist_data), aes(x=x)) +\\n  geom_histogram(aes(y=after_stat(density)), bins=25) +\\n  geom_density()\\n\\nggplot(facet_data, aes(x=x, y=y)) +\\n  geom_point() +\\n  facet_wrap(~ group)",questions:[
+{q:"What is faceting used for?",o:["Removing missing values","Creating multiple plots by a categorical variable","Importing SPSS files","Calculating a mean"],a:1,e:"Faceting creates small multiples based on a categorical variable."},
+{q:"What does the number of bins control in a histogram?",o:["Number of categories","Number of intervals","Sample size","Number of variables"],a:1,e:"Bins divide the numerical range into intervals."},
+{q:"A dashboard comparing sales trends by region could use:",o:["Faceting by region","Only one unlabeled number","A pie chart for every observation","No visual display"],a:0,e:"Faceting can create a separate panel for each region."}]},
+{title:"7.3 3D visualization, customization and interactive graphics",summary:"The notes include 3D scatter plots in R using plotly and in SPSS using Legacy Dialogs. They also describe customization in ggplot2 and SPSS Chart Editor, plus interactive and dynamic visualization.",points:["A 3D scatter plot displays three numerical variables on x, y and z axes.","In SPSS, use Graphs → Legacy Dialogs → Scatter/Dot → 3-D Scatter, then assign three variables.","In SPSS Chart Editor, double-click a graph to change colours, titles, labels, axis scales and reference lines.","Interactive visualizations can support exploration through tooltips, filters and dynamic displays.","Choose customization that improves interpretation rather than decoration."],code:"library(plotly)\\nplot_ly(x=x, y=y, z=z, type=\"scatter3d\", mode=\"markers\")",questions:[
+{q:"A 3D scatter plot requires how many variables for its axes?",numeric:true,a:3,e:"A 3D scatter plot uses x, y and z variables."},
+{q:"Where do you customize an SPSS graph after double-clicking it?",o:["Variable View","Chart Editor","Data View","CRAN"],a:1,e:"The Chart Editor provides graph customization options."},
+{q:"Which R package is used in the notes for interactive 3D plotting?",o:["plotly","haven","readxl","knitr"],a:0,e:"The notes use plot_ly() from plotly."}]},
+{title:"7.4 Interpreting, selecting and presenting visualizations",summary:"Interpret advanced plots by looking for trends, patterns, outliers, clusters, gaps and correlations. Select an appropriate visualization for the data and purpose.",points:["Look for trends: increasing, decreasing or flat.","Look for patterns or cycles, outliers, clusters and gaps.","Use the graph type that matches the data and question.","Best practices: keep it simple, use clear titles and labels, use appropriate colours, provide context and tell a story.","When comparing charts, use consistent scales.","The notes demonstrate combining multiple plots into a dashboard layout."],questions:[
+{q:"Which is a recommended visualization best practice?",o:["Use as many colours as possible","Keep it simple and label clearly","Remove all context","Use inconsistent scales"],a:1,e:"The notes recommend simplicity, clear titles and labels, context and consistent scales."},
+{q:"What does a cluster in a scatter plot indicate?",o:["A group of similar observations","A missing variable name","A calculation error always","A zero sample size"],a:0,e:"Clusters are groups of points that are similar."},
+{q:"Why use consistent scales when comparing charts?",o:["To make comparisons fair and interpretable","To hide outliers","To increase sample size","To remove labels"],a:0,e:"Consistent scales support valid visual comparison."}]}
+]},
+{week:"Week 8: Data Reporting and Communication",topics:[
+{title:"8.1 Data reporting and report types",summary:"Data reporting organizes and presents data clearly, transforming analysis into actionable insights. The notes identify decision-making, communication, accountability, reproducibility and action as reasons reporting matters.",points:["Report types: executive summary, detailed analysis, dashboard, technical report, presentation and infographic.","Executive summaries provide a quick overview for leaders.","Detailed analysis provides in-depth findings; technical reports document methods for data professionals.","Dashboards support monitoring; presentations support oral communication; infographics use visual storytelling.","Select the report type for the intended audience and use case."],questions:[
+{q:"Which report type gives leaders a quick overview?",o:["Technical report","Executive summary","Raw dataset","Syntax file"],a:1,e:"An executive summary provides a quick overview for leaders."},
+{q:"Which report type is designed for real-time monitoring?",o:["Dashboard","Infographic","Title page","Appendix"],a:0,e:"The notes identify dashboards as a report type for monitoring."},
+{q:"A methodology document for data professionals is best described as a:",o:["Technical report","Infographic","Executive summary","Poster"],a:0,e:"Technical reports document methodology for data professionals."}]},
+{title:"8.2 Structure of a data report",summary:"The notes list a report structure from title page and executive summary through introduction, methodology, findings, discussion, conclusions and recommendations, and appendices.",points:["Title Page","Executive Summary","Table of Contents","Introduction","Methodology","Findings","Discussion","Conclusions and Recommendations","Appendices"],questions:[
+{q:"Which section normally explains how data were collected and analyzed?",o:["Methodology","Title page","Appendix only","Executive summary"],a:0,e:"The methodology explains the approach and procedures used."},
+{q:"Which section presents the main results?",o:["Findings","Table of contents","Title page","Acknowledgement"],a:0,e:"Findings present the results of the analysis."},
+{q:"Which section typically follows discussion in the listed structure?",o:["Introduction","Conclusions and Recommendations","Title Page","Methodology"],a:1,e:"The listed structure places conclusions and recommendations after discussion."}]},
+{title:"8.3 Reproducible reporting with R Markdown",summary:"R Markdown creates dynamic, reproducible reports combining code, narrative and formatting. The notes identify reproducibility, integration, flexibility and version control as benefits.",points:["Install and load rmarkdown and knitr.","A YAML header can specify title, author, date and output format.","R code chunks are included using an R Markdown code fence.","Output formats in the notes include HTML, PDF, Word, ioslides presentations and flexdashboard.","Reports can update when data or code changes, supporting reproducibility."],code:"install.packages(\"rmarkdown\")\\ninstall.packages(\"knitr\")\\nlibrary(rmarkdown)\\nlibrary(knitr)\\n\\n---\\ntitle: \"My Report\"\\nauthor: \"Name\"\\noutput: html_document\\n---\\n\\n```{r}\\ndata <- read.csv(\"my_data.csv\")\\nhead(data)\\n```",questions:[
+{q:"What is a key benefit of R Markdown?",o:["It prevents all errors","Reproducible reports combining code and narrative","It replaces data collection","It only exports images"],a:1,e:"R Markdown combines code, narrative and formatting and supports reproducibility."},
+{q:"Which section at the beginning of an R Markdown document specifies title and output?",o:["YAML header","Appendix","Data View","Console"],a:0,e:"The YAML header contains metadata and output settings."},
+{q:"Which output format is suitable for web reports in the notes?",o:["html_document","sav_file","csv_table","r_script"],a:0,e:"The notes list html_document for web reports."}]},
+{title:"8.4 SPSS reports, communication and presentations",summary:"SPSS Output Viewer generates tables, charts, test results and notes. Tables can be copied or exported. Effective communication depends on audience, clear visualizations, key insights and transparency.",points:["SPSS Output Viewer automatically generates tables, charts, test results and notes.","To export a table, right-click it in Output Viewer and select Copy or Export.","Executives need summaries and recommendations; technical teams need methodology and code; clients need business impact; the public needs simple language and visuals.","Tell a story: problem → insight → solution; highlight key insights and acknowledge limitations.","Presentation structure: Title Slide → Agenda → Background → Data Overview → Analysis & Results → Insights → Recommendations → Conclusion → Q&A."],questions:[
+{q:"How can an SPSS output table be exported according to the notes?",o:["Right-click and choose Copy or Export","Delete the output viewer","Use Data View only","Save as an R vector"],a:0,e:"The notes specify right-clicking a table and choosing Copy or Export."},
+{q:"What should communication to busy executives emphasize?",o:["All raw code","A concise summary and recommendations","Unexplained technical jargon","Every intermediate calculation"],a:1,e:"The notes recommend summaries and recommendations for executives."},
+{q:"Which sequence best captures the communication story?",o:["Solution → problem → insight","Problem → insight → solution","Code → table → code","Appendix → title → data"],a:1,e:"The notes recommend telling a story from problem to insight to solution."}]},
+{title:"8.5 Dashboards, design principles and common mistakes",summary:"A dashboard is a visual display of key information for monitoring, typically interactive. The notes describe KPI cards, charts, maps, filters, drill-downs and tooltips.",points:["Choose relevant KPIs and visualizations, such as line charts for trends and bar charts for product comparisons.","Keep dashboards simple and uncluttered; use white space.","Make dashboards interactive with filters, drill-down and tooltips.","Use colour consistently; the notes give green for good, red for bad and yellow for near target.","Common mistakes: too much jargon, information overload, missing context, poor visuals, no call to action, inconsistent formatting and no story.","Dashboard workflow: identify metrics → design → visuals → interactivity → test → deploy."],questions:[
+{q:"What is a dashboard?",o:["A visual display of key information for monitoring","A code editor","A type of sampling","A probability distribution"],a:0,e:"The notes define a dashboard as a visual display of key information, typically interactive."},
+{q:"Which chart is suitable for monthly trends?",o:["Line chart","Pie chart only","3D scatter always","No chart"],a:0,e:"A line chart is used to show trends over time."},
+{q:"Which is a common dashboard mistake?",o:["Clear filters","Too much information on one page","Consistent formatting","Useful context"],a:1,e:"Information overload and clutter are listed as common mistakes."}]}
+]},
+{week:"Week 9: Data Mining and Machine Learning (included in supplied PDF)",topics:[
+{title:"9.1 Machine learning concepts and types",summary:"The supplied PDF includes Week 9 material on data mining and machine learning. Its objectives include understanding ML concepts, supervised and unsupervised learning, common algorithms, classification, regression, clustering, PCA and model evaluation.",points:["Machine learning uses data to learn patterns and make predictions or discover structure.","Supervised learning uses labelled data; examples include house-price prediction and spam classification.","Unsupervised learning uses unlabelled data to find patterns; an example is customer segmentation.","Reinforcement learning uses trial-and-error learning; examples include game AI and self-driving cars.","Features are input variables; labels are output variables; training data fits a model; testing data evaluates it."],questions:[
+{q:"Which learning type uses labelled data?",o:["Supervised learning","Unsupervised learning","Reinforcement learning","Sampling"],a:0,e:"Supervised learning uses labelled data."},
+{q:"Customer segmentation is an example of:",o:["Supervised learning","Unsupervised learning","Paired t-test","Regression output"],a:1,e:"The notes give customer segmentation as an unsupervised learning example."},
+{q:"In machine learning, features are:",o:["Input variables","Output labels only","Model errors","Test scores"],a:0,e:"Features are the input variables."}]},
+{title:"9.2 Supervised learning: regression and classification",summary:"Supervised learning trains a model using labelled examples. The notes distinguish regression, which predicts continuous values, from classification, which predicts categories.",points:["Regression predicts a continuous outcome, such as house price.","Classification predicts a category, such as spam/not spam or fraud/not fraud.","Training data is used to train the model; testing data evaluates its performance.","The supplied notes list linear regression and decision trees among model examples.","Use the problem type and outcome variable to select the learning task."],questions:[
+{q:"Predicting a house price is an example of:",o:["Regression","Clustering","PCA","Classification"],a:0,e:"House price is a continuous outcome, so this is regression."},
+{q:"Predicting whether an email is spam is an example of:",o:["Regression","Classification","PCA","Sampling"],a:1,e:"Spam/non-spam is a category, so this is classification."},
+{q:"What is the purpose of testing data?",o:["Train the model only","Evaluate model performance","Replace labels","Create features only"],a:1,e:"Testing data is used to evaluate the model."}]},
+{title:"9.3 Unsupervised learning and common techniques",summary:"Unsupervised learning finds patterns in data without labelled outcomes. The notes list K-means, principal component analysis (PCA) and hierarchical clustering.",points:["K-means groups observations into a chosen number of clusters.","PCA is used for dimensionality reduction; the notes give image compression as an example application.","Hierarchical clustering builds a hierarchy of groups; the notes give species grouping as an application.","The notes show scaling data before K-means clustering.","Choose the technique based on the purpose: grouping, reducing dimensions or exploring hierarchical similarity."],code:"data <- iris[,1:4]\\nscaled_data <- scale(data)\\nset.seed(123)\\nkmeans_result <- kmeans(scaled_data, centers=3)",questions:[
+{q:"Which method groups observations into a chosen number of clusters?",o:["K-means","Linear regression","Logistic regression","One-sample t-test"],a:0,e:"K-means creates a specified number of clusters."},
+{q:"Which technique is associated with dimensionality reduction?",o:["PCA","Paired t-test","Bar chart","ANOVA table"],a:0,e:"PCA is a dimensionality-reduction technique."},
+{q:"Why does the notes' K-means example scale the data?",o:["To put variables on comparable scales","To add labels","To delete all observations","To calculate p-values"],a:0,e:"Scaling places variables on comparable scales before distance-based clustering."}]},
+{title:"9.4 Machine learning workflow and model evaluation",summary:"The supplied notes discuss model evaluation, classification metrics and best practices. They recommend understanding the problem, exploring and cleaning data, feature engineering, splitting data and choosing an appropriate algorithm.",points:["Accuracy = correct predictions / total predictions.","Classification outcomes are summarized using true positives, true negatives, false positives and false negatives.","Precision measures the proportion of predicted positives that are actually positive.","Recall measures the proportion of actual positives correctly identified.","Best practices listed: understand the problem; explore and clean data; feature engineering; split training/validation/testing data; choose the right algorithm.","Avoid overfitting: a model that memorizes training data may perform poorly on new data."],questions:[
+{q:"Accuracy is calculated as:",o:["Correct predictions / total predictions","False positives / true positives","Training data / testing data","Features / labels"],a:0,e:"The notes define accuracy as correct predictions divided by total predictions."},
+{q:"A model that memorizes training data but performs poorly on new data is:",o:["Under-sampled","Overfitted","Well-generalized","Unsupervised"],a:1,e:"This is overfitting."},
+{q:"Which step appears in the notes' machine learning best practices?",o:["Ignore data quality","Feature engineering","Never split the data","Always use one algorithm"],a:1,e:"Feature engineering is one of the listed best practices."}]}
+]}
+];
+
+let student=null, currentWeek=0, currentTopic=0, dashData=null, dashCode='';
+const $=id=>document.getElementById(id);
+function showView(view){
+  ['student','lecturer'].forEach(v=>{ $(v==='student'?'studentTab':'lecturerTab').classList.toggle('active',v===view); });
+  $('registration').classList.toggle('hidden',view!=='student'||!!student);
+  $('learning').classList.toggle('hidden',view!=='student'||!student);
+  $('lecturer').classList.toggle('hidden',view!=='lecturer');
+}
+function startStudent(){
+  const s={name:$('studentName').value.trim(),reg:$('regNo').value.trim(),email:$('studentEmail').value.trim(),course:$('courseCode').value.trim(),programme:$('programme').value.trim()};
+  if(!s.name||!s.reg||!s.email||!s.course||!$('studentEmail').checkValidity()){ $('loginMessage').innerHTML='<div class="warning">Enter your full name, registration number, course code and a valid email address.</div>';return;}
+  const b=$('startBtn');b.disabled=true;b.textContent='Saving registration...';
+  google.script.run.withSuccessHandler(()=>{
+    student=s; $('registration').classList.add('hidden');$('learning').classList.remove('hidden');
+    $('welcome').textContent=`Welcome ${s.name} · ${s.reg} · ${s.email} · ${s.course}`;
+    renderCourse();window.scrollTo({top:0,behavior:'smooth'});
+  }).withFailureHandler(e=>{b.disabled=false;b.textContent='Save details and enter revision';$('loginMessage').innerHTML='<div class="warning">'+escapeHtml(e.message||'Registration failed')+'</div>';}).saveSTAT210Student(s);
+}
+function renderCourse(){
+  $('weekNav').innerHTML=course.map((w,i)=>`<button class="${i===currentWeek?'active':''}" onclick="selectWeek(${i})">${w.week.split(':')[0]}</button>`).join('');
+  $('weekHeading').textContent=course[currentWeek].week;
+  $('topicNav').innerHTML=course[currentWeek].topics.map((t,i)=>`<button class="topic-link ${i===currentTopic?'active':''}" onclick="selectTopic(${i})">${escapeHtml(t.title)}</button>`).join('');
+  renderTopic();
+}
+function selectWeek(i){currentWeek=i;currentTopic=0;renderCourse();}
+function selectTopic(i){currentTopic=i;renderCourse();}
+function renderTopic(){
+  const t=course[currentWeek].topics[currentTopic];
+  $('topicNav').innerHTML=course[currentWeek].topics.map((x,i)=>`<button class="topic-link ${i===currentTopic?'active':''}" onclick="selectTopic(${i})">${escapeHtml(x.title)}</button>`).join('');
+  let out=`<div class="topic-card"><div class="muted">${escapeHtml(course[currentWeek].week)}</div><h2>${escapeHtml(t.title)}</h2><p>${escapeHtml(t.summary)}</p><h3>Revision notes</h3><ul>${t.points.map(p=>`<li>${escapeHtml(p)}</li>`).join('')}</ul>`;
+  if(t.code)out+=`<h3>R / software illustration</h3><pre class="code">${escapeHtml(t.code)}</pre>`;
+  out+=`<div class="note"><b>Study approach:</b> Review the definitions and steps, practise the examples, and attempt the revision quiz. Numerical answers are accepted with a small rounding tolerance where appropriate.</div><h3>Topic self-assessment</h3><p>Answer all ${t.questions.length} questions. Your result and submitted answers will be recorded. You may repeat this topic.</p><div id="quiz">${t.questions.map((q,i)=>questionHTML(q,i)).join('')}</div><div class="actions"><button onclick="markTopic()">Submit topic assessment</button><button class="secondary" onclick="renderTopic()">Clear answers / retry</button></div><div id="topicResult" class="hidden"></div><div class="actions"><button class="secondary" ${currentTopic===0?'disabled':''} onclick="selectTopic(${Math.max(0,currentTopic-1)})">Previous topic</button><button ${currentTopic===course[currentWeek].topics.length-1?'disabled':''} onclick="selectTopic(${Math.min(course[currentWeek].topics.length-1,currentTopic+1)})">Next topic</button></div></div>`;
+  $('topicContent').innerHTML=out;
+}
+function questionHTML(q,i){
+  if(q.numeric)return `<div class="question"><b>${i+1}. ${escapeHtml(q.q)}</b><label for="answer${i}">Numerical answer</label><input id="answer${i}" type="number" step="any" placeholder="Enter your answer"></div>`;
+  return `<div class="question"><b>${i+1}. ${escapeHtml(q.q)}</b>${q.o.map((o,j)=>`<label class="option"><input type="radio" name="answer${i}" value="${j}"><span>${String.fromCharCode(65+j)}. ${escapeHtml(o)}</span></label>`).join('')}<div id="feedback${i}" class="feedback"></div></div>`;
+}
+function markTopic(){
+  const t=course[currentWeek].topics[currentTopic];let score=0,answers=[];
+  t.questions.forEach((q,i)=>{
+    let response='',correct=false;
+    if(q.numeric){response=$('answer'+i).value.trim();if(response!==''){const n=Number(response);correct=Number.isFinite(n)&&Math.abs(n-q.a)<=(q.tolerance||0.011);}}
+    else {const chosen=document.querySelector(`input[name="answer${i}"]:checked`);if(chosen){response=chosen.value;correct=Number(response)===q.a;}}
+    if(correct)score++;
+    answers.push(response);
+    if(!q.numeric){const fb=$('feedback'+i);fb.className='feedback '+(correct?'correct':'incorrect');fb.innerHTML=(correct?'Correct. ':'Incorrect. ')+escapeHtml(q.e);}
+  });
+  const total=t.questions.length,pct=score/total*100,passed=score===total;
+  const result=$('topicResult');result.classList.remove('hidden');
+  result.innerHTML=`<div class="topic-card"><h3>Result: ${score}/${total} (${pct.toFixed(1)}%)</h3><div class="progress"><span style="width:${pct}%"></span></div><p>${passed?'Excellent! You achieved a perfect score in this topic.':'Review the explanations and lesson notes, then retry to improve your score.'}</p></div>`;
+  google.script.run.withFailureHandler(e=>console.error('Attempt save failed',e)).saveSTAT210Attempt({
+    student:student,week:course[currentWeek].week,topic:t.title,score:score,total:total,
+    percentage:pct,passed:passed,answers:answers
+  });
+  result.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function loadDashboard(){
+  const code=$('lecturerCode').value;
+  if(!code){$('lecturerMessage').textContent='Enter your lecturer access code.';return;}
+  $('lecturerMessage').textContent='Verifying access...';
+  google.script.run.withSuccessHandler(()=>{dashCode=code;refreshDashboard();}).withFailureHandler(e=>{$('lecturerMessage').textContent=e.message||'Access denied';}).verifyLecturerAccess(code);
+}
+function refreshDashboard(){
+  if(!dashCode)return;
+  $('lecturerMessage').textContent='Refreshing records...';
+  google.script.run.withSuccessHandler(data=>{
+    dashData=data;$('lecturerLogin').classList.add('hidden');$('dashboard').classList.remove('hidden');
+    $('sheetLink').href=data.spreadsheetUrl;
+    $('lecturerMessage').textContent='';
+    const wf=$('weekFilter'),old=wf.value;
+    wf.innerHTML='<option value="">All weeks</option>'+course.map(w=>`<option>${escapeHtml(w.week)}</option>`).join('');
+    wf.value=old;
+    renderDashboardTables();
+  }).withFailureHandler(e=>{$('lecturerMessage').textContent=e.message||'Could not load dashboard';}).getSTAT210Dashboard(dashCode);
+}
+function renderDashboardTables(){
+  if(!dashData)return;
+  const d=dashData;
+  $('statCards').innerHTML=[
+    ['Registered students',d.registeredCount],['Assessment attempts',d.attemptCount],
+    ['Perfect topic passes',d.passedCount],['Average score',Number(d.averagePercentage).toFixed(1)+'%']
+  ].map(x=>`<div class="stat"><span class="muted">${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
+  const term=($('studentSearch').value||'').toLowerCase();
+  const students=d.studentPerformance.filter(s=>(s.name+' '+s.reg+' '+s.email).toLowerCase().includes(term));
+  $('studentTable').innerHTML=students.length?`<table><thead><tr><th>Student</th><th>Registration</th><th>Email</th><th>Attempts</th><th>Average</th><th>Topics passed</th><th>Last activity</th></tr></thead><tbody>${students.map(s=>`<tr><td>${escapeHtml(s.name)}</td><td>${escapeHtml(s.reg)}</td><td>${escapeHtml(s.email)}</td><td>${s.attempts}</td><td>${s.average.toFixed(1)}%</td><td>${s.completedTopics}</td><td>${formatDate(s.last)}</td></tr>`).join('')}</tbody></table>`:'<p class="muted">No matching assessment records yet.</p>';
+  $('topicTable').innerHTML=d.topicStats.length?`<table><tr><th>Topic</th><th>Attempts</th><th>Perfect passes</th><th>Average score</th></tr>${d.topicStats.map(t=>`<tr><td>${escapeHtml(t.topic)}</td><td>${t.attempts}</td><td>${t.passed}</td><td>${t.average.toFixed(1)}%</td></tr>`).join('')}</table>`:'<p class="muted">No topic attempts recorded yet.</p>';
+  const week=$('weekFilter').value, search=($('attemptSearch').value||'').toLowerCase();
+  const attempts=d.attempts.filter(a=>(!week||a.week===week)&&(a.name+' '+a.reg+' '+a.email+' '+a.topic).toLowerCase().includes(search));
+  $('attemptTable').innerHTML=attempts.length?`<table><tr><th>Date/time</th><th>Student</th><th>Registration</th><th>Week</th><th>Topic</th><th>Score</th><th>Percentage</th><th>Passed</th><th>Attempt</th></tr>${attempts.map(a=>`<tr><td>${formatDate(a.timestamp)}</td><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.reg)}</td><td>${escapeHtml(a.week)}</td><td>${escapeHtml(a.topic)}</td><td>${a.score}/${a.total}</td><td>${a.percentage.toFixed(1)}%</td><td>${a.passed}</td><td>${a.attempt}</td></tr>`).join('')}</table>`:'<p class="muted">No matching attempts.</p>';
+}
+function showChangeCode(){$('changeCodePanel').classList.toggle('hidden');}
+function changeCode(){
+  const old=$('oldCode').value,next=$('newCode').value;
+  if(next.trim().length<4){$('codeMessage').textContent='New code must contain at least 4 characters.';return;}
+  google.script.run.withSuccessHandler(()=>{dashCode=next;$('codeMessage').textContent='Access code updated successfully.';$('oldCode').value='';$('newCode').value='';}).withFailureHandler(e=>$('codeMessage').textContent=e.message||'Could not update code').changeLecturerAccessCode(old,next);
+}
+function downloadCSV(){
+  if(!dashData)return;
+  const rows=[['Timestamp','Name','Registration','Email','Course','Week','Topic','Score','Total','Percentage','Passed','Attempt']];
+  dashData.attempts.forEach(a=>rows.push([a.timestamp,a.name,a.reg,a.email,a.course,a.week,a.topic,a.score,a.total,a.percentage,a.passed,a.attempt]));
+  const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='STAT210_Assessment_Results.csv';a.click();URL.revokeObjectURL(url);
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function formatDate(s){if(!s)return '';const d=new Date(s);return isNaN(d)?escapeHtml(s):d.toLocaleString();}
+showView('student');
+</script></body></html>
